@@ -1,0 +1,25 @@
+---
+title: "Variables in R"
+output: github_document
+---
+
+```{r variables, include=TRUE}
+a <- 10
+b = 20
+30 -> c
+
+print(a)
+b
+cat(c)
+```
+
+
+
+```{r LR, include=TRUE}
+ls()
+rm(b)
+```
+
+```r
+print(b)
+```

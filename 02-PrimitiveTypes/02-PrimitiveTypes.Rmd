@@ -1,0 +1,24 @@
+---
+title: "Primitive Types in R"
+output: github_document
+---
+
+```{r pt, include=TRUE}
+l <- FALSE
+n <- 12.333
+i <- 64L
+cx <- 3+2i
+cc <- 'programming'
+
+class(l) 
+
+class(n)
+
+class(i)
+
+class(cx)
+
+class(cc)
+
+```
+
