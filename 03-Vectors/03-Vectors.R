@@ -1,0 +1,38 @@
+l <- c(FALSE,FALSE,TRUE,FALSE)
+n <- c(12.333,12.389,12.918,13,14.021)
+cc <- c('programming','r','python')
+
+length(l)
+class(l) 
+length(n)
+class(n)
+length(cc)
+class(cc)
+
+v <- vector(length = 10)
+length(v)
+class(v)
+v
+
+
+v <- vector(length = 10,mode = "numeric")
+length(v)
+class(v)
+v
+
+
+m1 <- c('R','is','Easy',FALSE)
+class(m1) 
+m1
+
+m2 <- c(1,2,3,123.123)
+class(m2)
+m2
+
+m3 <- c('programming',3000,'lines')
+class(m3)
+m3
+
+m4 <- c(-2,-1,FALSE,TRUE,2)
+class(m4)
+m4
