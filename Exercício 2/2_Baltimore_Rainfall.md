@@ -2,7 +2,7 @@
 ================
 
 ``` r
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 # Precipitação mensal média em Baltimore
 precpolBaltimore <- c(3.47, 3.02, 3.93, 3.00, 3.89, 3.43, 3.85, 3.74, 3.98, 3.16, 3.12, 3.35)
 
