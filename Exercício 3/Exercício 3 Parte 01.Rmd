@@ -1,0 +1,179 @@
+---
+title: "Exercício da 3ª Aula - 1ª Parte"
+output: github_document
+---
+## PS: The initial part was given by professor
+```{r given, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+vendors <- "https://data.baltimorecity.gov/api/views/bqw3-z52q/rows.csv?accessType=DOWNLOAD"
+download.file(vendors,destfile = "../TempData/BFood.csv",method="curl")
+if (file.exists("../TempData/BFood.csv"))
+{
+  tam <- file.info("../TempData/BFood.csv")$size
+  paste("File downloaded, ",tam," bytes")
+} else
+{
+  "Error downloading file!"
+}
+
+bVendors <- read.csv(file="../TempData/BFood.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+str(bVendors)
+
+bVendors$Id <- NULL
+bVendors$LicenseNum <- as.factor(bVendors$LicenseNum)
+
+#looks suspicious....let's check it.
+bVendors$St 
+bVendors$St <- as.factor(bVendors$St)
+
+str(bVendors$St)
+bVendors$St <- NULL
+
+names(bVendors)[names(bVendors) == "Location.1"] <- "location"
+str(bVendors)
+
+oneLoc <- "Towson 21204\n(39.28540000000, -76.62260000000)"
+locV1 <- unlist(strsplit(oneLoc,"\n"))
+locV1
+latLong <- locV1[2]
+latLongS <- unlist(strsplit(locV1[2],","))
+latLongS
+lat <- as.numeric(gsub("^.",'',latLongS[1]))
+long <- as.numeric(gsub(".$",'',latLongS[2]))
+lat
+long
+
+oneLoc <- "Towson 21204\n(39.28540000000, -76.62260000000)"
+tempS <- unlist(regmatches(oneLoc,gregexpr("[0-9.]+",oneLoc)))
+tempS
+lat <- as.numeric(tempS[2])
+long <- as.numeric(tempS[3])
+paste("lat =",lat," long = ",long)
+
+tempS <- regmatches(bVendors$location,gregexpr("[0-9.]+",bVendors$location))
+lats <- vector(length = nrow(bVendors),mode = "numeric")
+longs <- vector(length = nrow(bVendors),mode = "numeric")
+for(i in 1:nrow(bVendors)) 
+{
+  lats[i] <- as.numeric(tempS[[i]][2])
+  longs[i] <- as.numeric(tempS[[i]][3])
+}
+bVendors$lat <- lats
+bVendors$long <- longs
+str(bVendors)
+
+head(subset(bVendors, select = c(location,lat,long)))
+
+
+bVendors$hotdog <- grepl("Hot dog",bVendors$ItemsSold)
+dfHotdog <- head(subset(bVendors, select = c(ItemsSold,hotdog)))
+
+dfHotdog
+
+rownames(dfHotdog)
+length(dfHotdog)
+nrow(dfHotdog)
+```
+
+## 1. The “hotdog” variable for the “Hot Dogs in Baltimore” example can be better defined. How can we ensure that all variations of “hot dogs” are represented?
+
+### Hot dog variations (franks, HOT DOG, hOT dOG, etc.) 
+
+```{r 1, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+x <- 1
+y <- nrow(dfHotdog)
+while (x<=y) {
+  if (grepl("Hot dog",dfHotdog$ItemsSold[x],ignore.case=TRUE)){
+    dfHotdog$hotdog[x] <- TRUE
+  } else if (grepl("franks",dfHotdog$ItemsSold[x],ignore.case=TRUE)){
+    dfHotdog$hotdog[x] <- TRUE
+  } else 
+    dfHotdog$hotdog[x] <- FALSE
+
+    x <- x+1
+}
+
+dfHotdog
+
+```
+
+## 2. I prefer Pizza. OK, create a “pizza” variable then.
+```{r 2, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+x <- 1
+y <- nrow(dfHotdog)
+while (x<=y) {
+  if (grepl("pizza",dfHotdog$ItemsSold[x],ignore.case=TRUE)){
+    dfHotdog$hotdog[x] <- TRUE
+  } else 
+    dfHotdog$hotdog[x] <- FALSE
+  
+  x <- x+1
+}
+
+dfHotdog
+
+```
+
+
+## 3. Get the name of the town for the “Hot Dogs in Baltimore” example.
+##### Filter the name of the town from the location variable: ("Towson 21204\n(39.28540000000, -76.62260000000)" "Owings Mill 21117\n(39.29860000000, -76.61280000000)" "Owings Mill 21117\n(39.28920000000, -76.62670000000)" "Owings Mill 21117\n(39.28870000000, -76.61360000000)"...) – search for grep examples on stackoverflow.com on how to do this. Hint: there is a lazier simpler way: we already have the name and ZIP code...
+
+```{r 3, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+## Completing my Data Frame 
+library(plyr)
+dfHotdogC <- join_all(list(bVendors,dfHotdog)) 
+
+## Hot dog location with name of the town
+x <- 1
+y <- nrow(dfHotdogC)
+while (x<=y) {
+  if (grepl("Hot dog",dfHotdogC$ItemsSold[x],ignore.case=TRUE)){
+    dfHotdogC$hotdog[x] <- TRUE
+  } else if (grepl("franks",dfHotdogC$ItemsSold[x],ignore.case=TRUE)){
+    dfHotdogC$hotdog[x] <- TRUE
+  } else 
+    dfHotdogC$hotdog[x] <- FALSE
+  
+  x <- x+1
+}
+
+town <- vector(length = nrow(dfHotdogC),mode = "character")
+library("stringr")
+x <- 1
+y <- nrow(dfHotdogC)
+while (x<=y) {
+  if (dfHotdogC$hotdog[x] == TRUE) {
+    town[x] <- str_extract_all(dfHotdogC$location[x], regex("[a-z]+", TRUE))
+  }
+  x <- x+1
+}
+
+dfHotdogC$town <- town
+colnames(dfHotdogC)
+latitude <- vector(length = nrow(dfHotdogC),mode = "numeric")
+latitude <- dfHotdogC$lat
+longitude <- vector(length = nrow(dfHotdogC),mode = "numeric")
+longitude <- dfHotdogC$long
+
+dfHotdogC$location <- NULL
+dfHotdogC$LicenseNum <- NULL
+dfHotdogC$VendorAddr <- NULL
+dfHotdogC$Cart_Descr <- NULL
+dfHotdogC$VendorAddr <- NULL
+dfHotdogC$ItemsSold <- NULL
+
+
+dfHotdogC
+
+```
+
+
+
+
+

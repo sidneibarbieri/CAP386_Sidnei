@@ -1,0 +1,63 @@
+today <- Sys.Date()
+today
+
+class(today)
+
+now <- Sys.time()
+now
+
+class(now)
+
+monday <- as.Date("2017-07-03")
+monday
+
+class(monday)
+
+
+aDate <- "04/07/2017"
+aDate
+class(aDate)
+
+tuesday <- as.Date(aDate, "%d/%m/%Y")
+tuesday
+class(tuesday)
+
+mondayMorning <- as.Date("2017-07-03 05:30:00")
+mondayMorning
+
+class(mondayMorning)
+
+aDate <- "04/07/2017"
+tuesday <- strptime(aDate, "%d/%m/%Y")
+tuesday
+
+class(tuesday)
+
+
+tuesdayMorning <- strptime("04/07/2017 at 05:20:17", "%d/%m/%Y at %H:%M:%S")
+tuesdayMorning
+
+class(tuesdayMorning)
+
+tuesdayMorning
+
+tM <- as.POSIXlt(tuesdayMorning)
+tM$sec
+
+tM$wday
+
+birthEAP <- as.Date("1809/01/19")
+birthEAP
+today <- Sys.Date()
+today
+diff <- today-birthEAP
+diff
+
+class(diff)
+
+today <- Sys.Date()
+today
+future <- today+100 # days
+future
+
+class(future)

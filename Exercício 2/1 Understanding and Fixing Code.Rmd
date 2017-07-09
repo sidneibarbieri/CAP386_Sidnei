@@ -103,6 +103,8 @@ recycling
 taubateWeather <- read.table("https://raw.githubusercontent.com/rafaeldcsantos/CAP386/master/Data/Taubate.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
 taubateWeather
 # Por padrão, a função read.csv transforma variáveis que contêm caracteres em factor (categórica). Para desabilitar isto, basta especificar na chamada à função stringsAsFactors = FALSE
+# Variáveis categóricas não possuem valor quantitativo. Podem ser Nominais (sem ordenação) ou Ordinais (com ordenação).
+
 
 # Levels 
 politicos <- factor(rep("corrupto",10),levels=c("corrupto","honesto"))

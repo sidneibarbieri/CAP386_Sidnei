@@ -1,0 +1,67 @@
+---
+title: "02 DownloadingFiles"
+output: github_document
+---
+## DownloadingFiles Again
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+setwd("/Users/sidneibarbieri/Documents/CAP386_Sidnei/Aula 03")
+getwd()
+
+orig <- getwd()
+orig
+
+setwd("..")
+
+getwd()
+
+setwd("/Users/")
+getwd()
+
+setwd(orig)
+getwd()
+
+file.exists("../Data/Taubate.csv")
+file.exists("../Data/TruthOrConsequences.csv")
+list.files("../Data")
+file.info("../Data/Taubate.csv")
+tam <- file.info("../Data/Taubate.csv")$size
+tam
+age <- Sys.time()-(file.info("../Data/Taubate.csv")$ctime)
+age
+if (age > 7)
+{
+  "Older than a week!"
+}
+
+file.exists("../TempData")
+if (!file.exists("../TempData"))
+{
+  dir.create("../TempData")  
+}
+file.exists("../TempData")
+
+# Do something with directory...
+aVector <- c(1,2,3)
+dump("aVector", file = "../TempData/aVector.R")
+
+# CAREFUL HERE
+unlink("../TempData", recursive = TRUE, force = TRUE)
+
+taubateURL <- "https://raw.githubusercontent.com/rafaeldcsantos/CAP386/master/Data/Taubate.csv"
+dir.create("../TempData")  
+download.file(taubateURL,destfile = "../TempData/Taubate.csv",method="curl")
+if (file.exists("../TempData/Taubate.csv"))
+{
+  tam <- file.info("../TempData/Taubate.csv")$size
+  paste("File downloaded, ",tam," bytes")
+} else
+{
+  "Error downloading file!"
+}
+
+
+
+```
+

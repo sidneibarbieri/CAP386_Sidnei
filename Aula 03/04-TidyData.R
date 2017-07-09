@@ -1,0 +1,63 @@
+vendors <- "https://data.baltimorecity.gov/api/views/bqw3-z52q/rows.csv?accessType=DOWNLOAD"
+download.file(vendors,destfile = "../TempData/BFood.csv",method="curl")
+if (file.exists("../TempData/BFood.csv"))
+{
+  tam <- file.info("../TempData/BFood.csv")$size
+  paste("File downloaded, ",tam," bytes")
+} else
+{
+  "Error downloading file!"
+}
+# Let's live dangerously.
+bVendors <- read.csv(file="../TempData/BFood.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+str(bVendors)
+
+bVendors$Id <- NULL
+bVendors$LicenseNum <- as.factor(bVendors$LicenseNum)
+
+#looks suspicious....let's check it.
+bVendors$St 
+bVendors$St <- as.factor(bVendors$St)
+
+str(bVendors$St)
+bVendors$St <- NULL
+
+names(bVendors)[names(bVendors) == "Location.1"] <- "location"
+str(bVendors)
+
+oneLoc <- "Towson 21204\n(39.28540000000, -76.62260000000)"
+locV1 <- unlist(strsplit(oneLoc,"\n"))
+locV1
+latLong <- locV1[2]
+latLongS <- unlist(strsplit(locV1[2],","))
+latLongS
+lat <- as.numeric(gsub("^.",'',latLongS[1]))
+long <- as.numeric(gsub(".$",'',latLongS[2]))
+lat
+long
+
+oneLoc <- "Towson 21204\n(39.28540000000, -76.62260000000)"
+tempS <- unlist(regmatches(oneLoc,gregexpr("[0-9.]+",oneLoc)))
+tempS
+lat <- as.numeric(tempS[2])
+long <- as.numeric(tempS[3])
+paste("lat =",lat," long = ",long)
+
+tempS <- regmatches(bVendors$location,gregexpr("[0-9.]+",bVendors$location))
+lats <- vector(length = nrow(bVendors),mode = "numeric")
+longs <- vector(length = nrow(bVendors),mode = "numeric")
+for(i in 1:nrow(bVendors)) 
+{
+  lats[i] <- as.numeric(tempS[[i]][2])
+  longs[i] <- as.numeric(tempS[[i]][3])
+}
+bVendors$lat <- lats
+bVendors$long <- longs
+str(bVendors)
+
+head(subset(bVendors, select = c(location,lat,long)))
+
+bVendors$hotdog <- grepl("Hot dog",bVendors$ItemsSold)
+head(subset(bVendors, select = c(ItemsSold,hotdog)))
+
+bVendors$hotdog 
