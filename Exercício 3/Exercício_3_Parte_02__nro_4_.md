@@ -1,5 +1,7 @@
-Untitled
+4 Complete the Codebook for the “Hot Dogs in Baltimore” example.
 ================
+
+##### Create a clean markdown file with all steps required to eliminate some columns, add and clean others. Make sure to include a codebook for the variables (even the ones you’ve created!)
 
 Initial Part. Given by prefessor
 --------------------------------
