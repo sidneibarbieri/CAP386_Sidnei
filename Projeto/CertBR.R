@@ -1,0 +1,238 @@
+### Pacotes
+install.packages("readr")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("ggplot2")
+install.packages("googleVis")
+
+### Bibliotecas
+library(readr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(ggplot2)
+library(googleVis)
+
+
+### Suprimindo mensagens de warning 
+searchpaths()
+suppressMessages(library(dplyr))
+
+
+### Consciência situacional
+orig <- getwd()
+orig
+setwd(orig)
+
+
+file.exists("./CertBR.csv")
+file <- "./CertBR.csv"
+
+
+tamanho <- file.info(file)$size
+tamanho
+
+
+### Importando o arquivo (https://www.cert.br/stats/incidentes/)
+df<-read.csv2(file, header = TRUE, sep =";", dec=",", stringsAsFactors = FALSE, encoding = "UTF-8")
+as.data.frame(df)
+
+
+### Entendendo o dataframe
+head(df)
+class(df)
+str(df)
+summary(df)
+
+
+### Conversões das colunas
+df$Total <- as.integer(df$Total)
+df$Worm <- as.integer(df$Worm)
+df$Worm_P <- as.double(sprintf("%0.2f", (df$Worm_P)))
+df$DOS <- as.integer(df$DOS)
+df$DOS_P <- as.double(sprintf("%0.2f", (df$DOS_P)))
+df$Invasao <- as.integer(df$Invasao)
+df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao_P)))
+df$Web <- as.integer(df$Web)
+df$Web_P <- as.double(sprintf("%0.2f", (df$Web_P)))
+df$Scan <- as.integer(df$Scan)
+df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan_P)))
+df$Fraude <- as.integer(df$Fraude)
+df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude_P)))
+df$Outros <- as.integer(df$Outros)
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros_P)))
+
+
+### Remover NAs (Subsituir por zero)
+df[is.na(df)] <- 0 
+sample_n(df, size = 10)
+
+
+### Overview: identificar se há problemas no arredondamento dos valores (se a soma de percentuais é 100)
+glimpse(df)
+glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
+glimpse(mutate(df, Soma = Worm + DOS + Invasao + Web + Scan + Fraude + Outros))
+
+
+### Corrigindo os arredondamentos e a representação (duas casas decimais):
+df$Worm_P <- as.double(sprintf("%0.2f", (df$Worm / df$Total)))
+df$DOS_P <- as.double(sprintf("%0.2f", (df$DOS / df$Total)))
+df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao / df$Total)))
+df$Web_P <- as.double(sprintf("%0.2f", (df$Web / df$Total)))
+df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan / df$Total)))
+df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude / df$Total)))
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
+
+glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
+
+
+### Overview
+sample_n(df, size = 5)
+
+
+### Seleção de partes
+dfData <- select(df, Ano, Mes, Total)
+head(dfData)
+class(dfData)
+select(df, Ano:Total)
+
+
+### Verificar se constam as informações de todos os 12 meses
+count(df, Ano)
+hist(df$Total)
+
+
+### Filtrar valores significativos
+filter(df, Total > 50000)
+filter(df, Total > 50000, Fraude > 100000)
+filter(df, Total > 50000, Fraude > 100000, Mes %in% c("ago", "set"), Ano %in% c("2014"))
+
+
+### Identificando padrões com arrange () 
+tbl_df(df) %>% arrange(Ano) %>% head
+
+tbl_df(df)  %>% arrange(Mes)
+
+tbl_df(df)  %>% select(Mes, Ano, Total)  %>% arrange(Mes)
+
+tbl_df(df)  %>% select(Mes, Ano, Total)  %>% arrange(Mes) %>% filter(Total > median(Total, na.rm = TRUE))
+
+tbl_df(df)  %>% select(Mes, Ano, Total)  %>% arrange(Mes) %>% filter(Ano >= 2011)
+
+tbl_df(df)  %>% select(Mes, Ano, Total)  %>% arrange(Mes, desc(Mes)) %>% filter(Ano >= 2011)
+
+head(df)
+
+
+### Melhorar a exibição
+options(digits = 3)
+head(df)
+
+
+### Informações sobre os valores da coluna Total
+df  %>% summarise(AvgTotal = mean(Total),
+                  MinTotal = min(Total),
+                  MaxTotal = max(Total),
+                  total = n())
+
+
+### Análise de Grupos (Ano)
+df  %>% 
+  group_by(Ano) %>%
+  summarise(AvgTotal = mean(Total),
+            MinTotal = min(Total),
+            MaxTotal = max(Total),
+            total = n())
+
+
+### Análise de Grupos (Mês)
+df  %>% 
+  group_by(Mes) %>%
+  summarise(AvgTotal = mean(Total),
+            MinTotal = min(Total),
+            MaxTotal = max(Total),
+            total = n())
+
+
+### Análises Diversas (Ataques de DOS acima da média)
+df  %>% 
+  select(Mes, Ano, DOS)   %>% 
+  filter(DOS > mean(DOS))  %>%
+  head
+
+
+### Remodelagem dos dados com TidyR
+df$Mes <- c(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12)
+
+
+### Corrigindo sequência cronológica
+df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total)  %>% arrange(Mes, desc(Mes)) %>% arrange(Ano, desc(Ano))
+
+df <- (df %>%
+         unite(Data, Mes, Ano, sep = '/'))
+
+
+### Analisando a relação entre Invasão e Scan
+df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
+
+
+### Remover colunas com informações redundantes 
+dfC <- subset(df, select = c(Data, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total))
+dfN <- subset(df, select = c(Data, Worm, DOS, Invasao, Web, Scan, Fraude, Outros))
+dfP <- subset(df, select = c(Data, Worm_P, DOS_P, Invasao_P, Web_P, Scan_P, Fraude_P, Outros_P))
+
+### Dataframe Completo, Percentual, Valores Absolutos: tbl_df (melhorar a apresentação)
+dfC <- tbl_df(dfC)
+dfN <- tbl_df(dfN)
+dfP <- tbl_df(dfP)
+
+class(dfC)
+head(dfC)
+
+
+### Reduzindo a Complexidade com um DF sobre Invasões
+dfinv <- dfC  %>% select(Data, DOS, Invasao, Web)  %>% filter(Ano == 2016)
+dfinv <- dfC  %>% select(Data, DOS, Invasao, Web)
+class(dfinv)
+str(dfinv)
+dfinv$DOS <- as.integer(dfinv$DOS)
+str(dfinv)
+
+as.tbl(dfinv)
+
+### Gráfico com GoogleVis (apresenta o gráfico no browser)
+df1 <- dfC  %>% 
+  select(Data, Total)
+line1 <- gvisLineChart(df1)
+plot(line1)
+
+
+dftbl %>%
+  ggplot(aes(x = Mes, y = Total)) +
+  geom_point() +
+  geom_smooth(method = "lm", aes(group = 1), se = F)
+
+dftbl
+
+
+# Linegraph do Total de Ataques
+ggplot(dfC, aes(Ano, Total, colour=Total)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Ataques", 
+      title = "Ataques registrados pelo CertBR")
+
+ggplot(dfP, aes(Ano, DOS_P,colour=DOS_P)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "DOS", 
+       title = "Ataques registrados pelo CertBR")
+
+ggplot(dfN, aes(Ano, DOS,colour=DOS)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "DOS", 
+       title = "Ataques registrados pelo CertBR")
+
+mosaicplot(dfP)
+
