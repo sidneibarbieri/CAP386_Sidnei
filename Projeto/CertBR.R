@@ -24,18 +24,16 @@ orig <- getwd()
 orig
 setwd(orig)
 
-
 file.exists("./CertBR.csv")
 file <- "./CertBR.csv"
-
 
 tamanho <- file.info(file)$size
 tamanho
 
 
 ### Importando o arquivo (https://www.cert.br/stats/incidentes/)
-df<-read.csv2(file, header = TRUE, sep =";", dec=",", stringsAsFactors = FALSE, encoding = "UTF-8")
-as.data.frame(df)
+df <- read.csv2(file, header = TRUE, sep =";", dec=",", stringsAsFactors = FALSE, encoding = "UTF-8")
+df <- as.data.frame(df)
 
 
 ### Entendendo o dataframe
@@ -43,29 +41,44 @@ head(df)
 class(df)
 str(df)
 summary(df)
+sample_n(df, size = 5)
 
 
 ### Conversões das colunas
 df$Total <- as.integer(df$Total)
 df$Worm <- as.integer(df$Worm)
-df$Worm_P <- as.double(sprintf("%0.2f", (df$Worm_P)))
+df$Worm_P <- as.double(df$Worm_P)
 df$DOS <- as.integer(df$DOS)
-df$DOS_P <- as.double(sprintf("%0.2f", (df$DOS_P)))
+df$DOS_P <- as.double(df$DOS_P)
 df$Invasao <- as.integer(df$Invasao)
-df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao_P)))
+df$Invasao_P <- as.double(df$Invasao_P)
 df$Web <- as.integer(df$Web)
-df$Web_P <- as.double(sprintf("%0.2f", (df$Web_P)))
+df$Web_P <- as.double(df$Web_P)
 df$Scan <- as.integer(df$Scan)
-df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan_P)))
+df$Scan_P <- as.double(df$Scan_P)
 df$Fraude <- as.integer(df$Fraude)
-df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude_P)))
-df$Outros <- as.integer(df$Outros)
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros_P)))
+df$Fraude_P <- as.double(df$Fraude_P)
 
 
 ### Remover NAs (Subsituir por zero)
 df[is.na(df)] <- 0 
 sample_n(df, size = 10)
+
+
+### Verificar se o Total corresponde à soma das demais colunas
+df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
+
+
+### Acrescentar e validar a coluna "Outros"
+df$Outros <- df$Total - (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
+df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude + df$Outros)
+
+
+### Acresdentar coluna com valores percentuais para "Outros"
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
+
+df$Outros <- as.integer(df$Outros)
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros_P)))
 
 
 ### Overview: identificar se há problemas no arredondamento dos valores (se a soma de percentuais é 100)
@@ -81,10 +94,10 @@ df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao / df$Total)))
 df$Web_P <- as.double(sprintf("%0.2f", (df$Web / df$Total)))
 df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan / df$Total)))
 df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude / df$Total)))
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
 
+
+### Validar a soma de valores percentuais
 glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
-
 
 ### Overview
 sample_n(df, size = 5)
@@ -94,7 +107,8 @@ sample_n(df, size = 5)
 dfData <- select(df, Ano, Mes, Total)
 head(dfData)
 class(dfData)
-select(df, Ano:Total)
+dfSelect <- select(df, Ano:Total)
+sample_n(dfSelect, size = 5)
 
 
 ### Verificar se constam as informações de todos os 12 meses
@@ -103,7 +117,7 @@ hist(df$Total)
 
 
 ### Filtrar valores significativos
-filter(df, Total > 50000)
+filter(df, Total > 100000)
 filter(df, Total > 50000, Fraude > 100000)
 filter(df, Total > 50000, Fraude > 100000, Mes %in% c("ago", "set"), Ano %in% c("2014"))
 
@@ -168,18 +182,15 @@ df$Mes <- c(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12)
 ### Corrigindo sequência cronológica
 df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total)  %>% arrange(Mes, desc(Mes)) %>% arrange(Ano, desc(Ano))
 
-df <- (df %>%
-         unite(Data, Mes, Ano, sep = '/'))
-
 
 ### Analisando a relação entre Invasão e Scan
 df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
 
 
-### Remover colunas com informações redundantes 
-dfC <- subset(df, select = c(Data, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total))
-dfN <- subset(df, select = c(Data, Worm, DOS, Invasao, Web, Scan, Fraude, Outros))
-dfP <- subset(df, select = c(Data, Worm_P, DOS_P, Invasao_P, Web_P, Scan_P, Fraude_P, Outros_P))
+### Secção do dataframe 
+dfC <- subset(df, select = c(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total))
+dfN <- subset(df, select = c(Mes, Ano, Worm, DOS, Invasao, Web, Scan, Fraude, Outros))
+dfP <- subset(df, select = c(Mes, Ano, Worm_P, DOS_P, Invasao_P, Web_P, Scan_P, Fraude_P, Outros_P))
 
 ### Dataframe Completo, Percentual, Valores Absolutos: tbl_df (melhorar a apresentação)
 dfC <- tbl_df(dfC)
@@ -191,8 +202,8 @@ head(dfC)
 
 
 ### Reduzindo a Complexidade com um DF sobre Invasões
-dfinv <- dfC  %>% select(Data, DOS, Invasao, Web)  %>% filter(Ano == 2016)
-dfinv <- dfC  %>% select(Data, DOS, Invasao, Web)
+dfinv <- dfC  %>% select(Ano, DOS, Invasao, Web)  %>% filter(Ano == 2016)
+dfinv <- dfC  %>% select(Ano, DOS, Invasao, Web)
 class(dfinv)
 str(dfinv)
 dfinv$DOS <- as.integer(dfinv$DOS)
@@ -200,39 +211,70 @@ str(dfinv)
 
 as.tbl(dfinv)
 
-### Gráfico com GoogleVis (apresenta o gráfico no browser)
-df1 <- dfC  %>% 
-  select(Data, Total)
-line1 <- gvisLineChart(df1)
-plot(line1)
 
-
-dftbl %>%
-  ggplot(aes(x = Mes, y = Total)) +
-  geom_point() +
-  geom_smooth(method = "lm", aes(group = 1), se = F)
-
-dftbl
-
-
-# Linegraph do Total de Ataques
-ggplot(dfC, aes(Ano, Total, colour=Total)) +
+# Linegraph do Total Geral de Ataques por Ano
+ggplot(dfC, aes(x = Ano, y = Total, group = Ano, colour=Total)) +
   geom_line(aes(group = 1)) +
   geom_point() +
-  labs(x = "Ano", y = "Número de Ataques", 
-      title = "Ataques registrados pelo CertBR")
+  labs(x = "Ano", y = "Número Total de Ataques", title = "Total de Ataques Registrados pelo CertBR")
 
-ggplot(dfP, aes(Ano, DOS_P,colour=DOS_P)) +
+
+# Linegraph do Total Geral de Ataques com WORM por Ano
+ggplot(dfC, aes(x = Ano, y = Worm, group = Ano, colour=Worm)) +
   geom_line(aes(group = 1)) +
   geom_point() +
-  labs(x = "Ano", y = "DOS", 
-       title = "Ataques registrados pelo CertBR")
+  labs(x = "Ano", y = "Número de Ataques com Worm", title = "Total de Ataques com Worm Registrados pelo CertBR")
 
-ggplot(dfN, aes(Ano, DOS,colour=DOS)) +
+
+# Linegraph do Total Geral de Ataques de DOS por Ano
+ggplot(dfC, aes(x = Ano, y = DOS, group = Ano, colour=DOS)) +
   geom_line(aes(group = 1)) +
   geom_point() +
-  labs(x = "Ano", y = "DOS", 
-       title = "Ataques registrados pelo CertBR")
+  labs(x = "Ano", y = "Número de Ataques de DOS", title = "Total de Ataques de DOS Registrados pelo CertBR")
 
-mosaicplot(dfP)
+
+# Linegraph do Total Geral de Ataques de Invasao por Ano
+ggplot(dfC, aes(x = Ano, y = Invasao, group = Ano, colour=Invasao)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Ataques de Invasao", title = "Total de Ataques de Invasao Registrados pelo CertBR")
+
+
+# Linegraph do Total Geral de Ataques a Servidores Web por Ano
+ggplot(dfC, aes(x = Ano, y = Web, group = Ano, colour=Web)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Ataques a Servidores Web", title = "Total de Ataques a Servidores Web Registrados pelo CertBR")
+
+
+# Linegraph do Total Geral de Scan por Ano
+ggplot(dfC, aes(x = Ano, y = Scan, group = Ano, colour=Scan)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Scan", title = "Total de Scans Registrados pelo CertBR")
+
+
+# Linegraph do Total Fraudes por Ano
+ggplot(dfC, aes(x = Ano, y = Fraude, group = Ano, colour=Fraude)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Fraudes", title = "Total de Fraudes Registrados pelo CertBR")
+
+
+# Linegraph do Total de Outros Atques por Ano
+ggplot(dfC, aes(x = Ano, y = Outros, group = Ano, colour=Outros)) +
+  geom_line(aes(group = 1)) +
+  geom_point() +
+  labs(x = "Ano", y = "Número de Outros", title = "Total de Outros Ataques Registrados pelo CertBR")
+
+
+# Linegraph dos Percentuais por Modalidaed de Ataques
+ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Ano", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR")
 
