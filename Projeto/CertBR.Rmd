@@ -1,10 +1,13 @@
 ---
-title: "Untitled"
+title: "Notebook do Projeto de Data Science"
 output: github_document
 ---
 
 ```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
+
+
+### Avaliação dos Dados Fornecidos pelo CertBR
 
 
 ### Bibliotecas
@@ -13,7 +16,6 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 library(ggplot2)
-library(googleVis)
 
 
 ### Suprimindo mensagens de warning 
@@ -186,7 +188,9 @@ df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web
 
 
 ### Analisando a relação entre Invasão e Scan
-df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
+dfRelation <- df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
+dfRelation <- tbl_df(dfRelation)
+sample_n(dfRelation, size = 12)
 
 
 ### Secção do dataframe 
@@ -279,6 +283,8 @@ ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) +
   geom_line(aes(y = Fraude_P, colour = "Fraude")) +
   geom_line(aes(y = Outros_P, colour = "Outros")) +
   labs(x = "Ano", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR")
+
+
 
 
 

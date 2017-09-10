@@ -1,3 +1,4 @@
+## Notebook Projeto de Data Science
 ### Pacotes
 install.packages("readr")
 install.packages("dplyr")
@@ -5,13 +6,16 @@ install.packages("tidyr")
 install.packages("ggplot2")
 install.packages("googleVis")
 
+
+### Avaliação dos Dados Fornecidos pelo CertBR
+
+
 ### Bibliotecas
 library(readr)
 library(dplyr)
 library(stringr)
 library(tidyr)
 library(ggplot2)
-library(googleVis)
 
 
 ### Suprimindo mensagens de warning 
@@ -184,7 +188,9 @@ df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web
 
 
 ### Analisando a relação entre Invasão e Scan
-df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
+dfRelation <- df[(df$Invasao > median(df$Invasao)) & (df$Scan > median(df$Scan)), ]
+dfRelation <- tbl_df(dfRelation)
+sample_n(dfRelation, size = 12)
 
 
 ### Secção do dataframe 
