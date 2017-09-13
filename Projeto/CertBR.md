@@ -167,18 +167,18 @@ summary(df)
 sample_n(df, size = 5)
 ```
 
-    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P  Web Web_P
-    ## 99   99 mar 2008 11586 2579  22.26   4  0,03      25      0.22  420  3.63
-    ## 162 162 jun 2003  3332 1469  44.09   1  0,03      12      0.36   39  1.17
-    ## 72   72 dez 2011 25581 6214  24.29   9  0,04       6      0.02 1532  5.99
-    ## 38   38 fev 2013 26471 1523   5.75   6  0,02    1206      4.56 1364  5.15
-    ## 15   15 mar 2015 52959 2867   5.41  70  0,13     489      0.92 8822 16.66
+    ##     Ord Mes  Ano Total Worm Worm_P  DOS DOS_P Invasao Invasao_P  Web Web_P
+    ## 140 140 ago 2005  5718 1144  20.01    5  0,09      45      0.79   41  0.72
+    ## 149 149 mai 2004  5471 2260  41.31    2  0,04      19      0.35   58  1.06
+    ## 148 148 abr 2004  4763 2496  52.40    2  0,04      14      0.29   81  1.70
+    ## 22   22 out 2015 52226 6301  12.06 1702  3,26     140      0.27 4315  8.26
+    ## 146 146 fev 2004  6110 2306  37.74    4  0,07      13      0.21   22  0.36
     ##      Scan Scan_P Fraude Fraude_P
-    ## 99   3661  31.60   4881    42.13
-    ## 162  1627  48.83     16     0.48
-    ## 72  10104  39.50   3155    12.33
-    ## 38  12664  47.84   5573    21.05
-    ## 15  32351  61.09   6338    11.97
+    ## 140  1522  26.62   2954    51.66
+    ## 149  2913  53.24    181     3.31
+    ## 148  1946  40.86    188     3.95
+    ## 22  32554  62.33   6089    11.66
+    ## 146  3542  57.97    170     2.78
 
 ``` r
 ### Conversões das colunas
@@ -213,27 +213,27 @@ sample_n(df, size = 10)
 ```
 
     ##     Ord Mes  Ano Total Worm Worm_P  DOS DOS_P Invasao Invasao_P  Web Web_P
-    ## 116 116 ago 2007 11437 4831  42.24    0     0       2      0.02  114  1.00
-    ## 144 144 dez 2005  7578 1881  24.82   19     0      38      0.50   54  0.71
-    ## 53   53 mai 2012 40965 3242   7.91   11     0     413      1.01 3532  8.62
-    ## 114 114 jun 2007 10738 4621  43.03    8     0      15      0.14  121  1.13
-    ## 22   22 out 2015 52226 6301  12.06 1702     0     140      0.27 4315  8.26
-    ## 122 122 fev 2006  7742 1223  15.80   33     0      59      0.76   54  0.70
-    ## 112 112 abr 2007 14152 6416  45.34   11     0       6      0.04  147  1.04
-    ## 82   82 out 2010 13078 1555  11.89    1     0      18      0.14  835  6.38
-    ## 134 134 fev 2005  3142 1157  36.82    1     0      27      0.86   57  1.81
-    ## 66   66 jun 2011 39458  933   2.36    2     0       2      0.01 1183  3.00
+    ## 174 174 jun 2002  1407  374  26.58    3     0      12      0.85    8  0.57
+    ## 145 145 jan 2004  5886 3013  51.19    6     0       9      0.15   55  0.93
+    ## 150 150 jun 2004  6502 3752  57.71    3     0       6      0.09   26  0.40
+    ## 61   61 jan 2011 16840 1041   6.18    9     0       6      0.04  996  5.91
+    ## 58   58 out 2012 39326 3380   8.59    9     0     754      1.92 1186  3.02
+    ## 167 167 nov 2003  6135 4495  73.27    4     0      11      0.18   50  0.81
+    ## 130 130 out 2006 18592 8944  48.11    3     0      21      0.11   35  0.19
+    ## 45   45 set 2013 31482 2365   7.51   86     0     419      1.33 1573  5.00
+    ## 26   26 fev 2014 43227 4163   9.63 6190     0     764      1.77 1434  3.32
+    ## 50   50 fev 2012 25266 4404  17.43   34     0     452      1.79 2211  8.75
     ##      Scan Scan_P Fraude Fraude_P
-    ## 116  1831  16.01   4659    40.74
-    ## 144  2682  35.39   2902    38.30
-    ## 53  13339  32.56   8557    20.89
-    ## 114  2092  19.48   3881    36.14
-    ## 22  32554  62.33   6089    11.66
-    ## 122  2737  35.35   3636    46.96
-    ## 112  4584  32.39   2988    21.11
-    ## 82   8521  65.16   1968    15.05
-    ## 134  1433  45.61    462    14.70
-    ## 66   7950  20.15   2544     6.45
+    ## 174   918  65.25      2     0.14
+    ## 145  2481  42.15    283     4.81
+    ## 150  2498  38.42    193     2.97
+    ## 61   8343  49.54   3098    18.40
+    ## 58  23229  59.07   6442    16.38
+    ## 167  1441  23.49     74     1.21
+    ## 130  6823  36.70   2766    14.88
+    ## 45  15911  50.54   8538    27.12
+    ## 26  19862  45.95   9616    22.25
+    ## 50   8523  33.73   4183    16.56
 
 ``` r
 ### Verificar se o Total corresponde à soma das demais colunas
@@ -398,17 +398,17 @@ sample_n(df, size = 5)
 ```
 
     ##     Ord Mes  Ano Total Worm Worm_P  DOS DOS_P Invasao Invasao_P  Web Web_P
-    ## 38   38 fev 2013 26471 1523   0.06    6  0.00    1206      0.05 1364  0.05
-    ## 134 134 fev 2005  3142 1157   0.37    1  0.00      27      0.01   57  0.02
-    ## 26   26 fev 2014 43227 4163   0.10 6190  0.14     764      0.02 1434  0.03
-    ## 114 114 jun 2007 10738 4621   0.43    8  0.00      15      0.00  121  0.01
-    ## 63   63 mar 2011 47630 1207   0.03   13  0.00      25      0.00 1005  0.02
+    ## 158 158 fev 2003  2948 1717   0.58    3  0.00      14      0.00   42  0.01
+    ## 104 104 ago 2008 11488 1859   0.16    0  0.00      19      0.00  530  0.05
+    ## 36   36 dez 2014 58743 2226   0.04 3159  0.05     727      0.01 5941  0.10
+    ## 107 107 nov 2008 29599 2288   0.08    0  0.00      20      0.00  237  0.01
+    ## 25   25 jan 2014 33959 2853   0.08 6539  0.19     590      0.02 1267  0.04
     ##      Scan Scan_P Fraude Fraude_P Outros Outros_P
-    ## 38  12664   0.48   5573     0.21   4135     0.16
-    ## 134  1433   0.46    462     0.15      5     0.00
-    ## 26  19862   0.46   9616     0.22   1198     0.03
-    ## 114  2092   0.19   3881     0.36      0     0.00
-    ## 63   8820   0.19   3814     0.08  32746     0.69
+    ## 158  1084   0.37     28     0.01     60     0.02
+    ## 104  3383   0.29   5505     0.48    192     0.02
+    ## 36  30751   0.52  14971     0.25    968     0.02
+    ## 107  4062   0.14  22891     0.77    101     0.00
+    ## 25  13916   0.41   7248     0.21   1546     0.05
 
 ``` r
 ### Seleção de partes
@@ -436,11 +436,11 @@ sample_n(dfSelect, size = 5)
 ```
 
     ##      Ano Total
-    ## 161 2003  3393
-    ## 1   2016 54781
-    ## 123 2006 11945
-    ## 69  2011 25409
-    ## 65  2011 42715
+    ## 119 2007  9152
+    ## 58  2012 39326
+    ## 92  2009  9783
+    ## 120 2007  8274
+    ## 46  2013 28842
 
 ``` r
 ### Verificar se constam as informações de todos os 12 meses
@@ -765,18 +765,18 @@ sample_n(dfRelation, size = 12)
     ## # A tibble: 12 x 17
     ##      Mes   Ano  Worm Worm_P   DOS DOS_P Invasao Invasao_P   Web Web_P
     ##    <dbl> <int> <int>  <dbl> <dbl> <dbl>   <int>     <dbl> <int> <dbl>
-    ##  1     1  2014  2853   0.08  6539  0.19     590      0.02  1267  0.04
-    ##  2     7  2014  3294   0.06 10218  0.17     210      0.00  2225  0.04
-    ##  3    12  2013  3089   0.11   673  0.02     517      0.02  1396  0.05
-    ##  4     7  2016  1766   0.05  1676  0.04     116      0.00  1804  0.05
-    ##  5    10  2012  3380   0.09     9  0.00     754      0.02  1186  0.03
-    ##  6    12  2014  2226   0.04  3159  0.05     727      0.01  5941  0.10
-    ##  7    10  2015  6301   0.12  1702  0.03     140      0.00  4315  0.08
-    ##  8     9  2006 13499   0.58     4  0.00      26      0.00    38  0.00
-    ##  9     3  2013  1771   0.06     6  0.00    1686      0.06  1113  0.04
-    ## 10     2  2016  4176   0.07   137  0.00      95      0.00  1422  0.02
-    ## 11     5  2016  3186   0.06   338  0.01     125      0.00  2361  0.05
-    ## 12     2  2014  4163   0.10  6190  0.14     764      0.02  1434  0.03
+    ##  1     8  2014  3327   0.02 38822  0.29     187      0.00  1828  0.01
+    ##  2     1  2016  4994   0.09   942  0.02     272      0.00  2266  0.04
+    ##  3     1  2015  2829   0.04  1367  0.02     409      0.01  6547  0.10
+    ##  4     5  2012  3242   0.08    11  0.00     413      0.01  3532  0.09
+    ##  5     2  2012  4404   0.17    34  0.00     452      0.02  2211  0.09
+    ##  6     7  2013  2932   0.09   123  0.00     509      0.02  1710  0.06
+    ##  7    10  2012  3380   0.09     9  0.00     754      0.02  1186  0.03
+    ##  8     3  2012  2380   0.07    22  0.00     559      0.02  3508  0.10
+    ##  9     5  2015  3122   0.05   374  0.01     177      0.00  5399  0.09
+    ## 10    11  2014  2571   0.02 29566  0.28     201      0.00  3416  0.03
+    ## 11    12  2013  3089   0.11   673  0.02     517      0.02  1396  0.05
+    ## 12    11  2012  1858   0.05   125  0.00     716      0.02  1116  0.03
     ## # ... with 7 more variables: Scan <int>, Scan_P <dbl>, Fraude <int>,
     ## #   Fraude_P <dbl>, Outros <int>, Outros_P <dbl>, Total <int>
 
@@ -954,3 +954,83 @@ ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) +
 ```
 
 ![](CertBR_files/figure-markdown_github/setup-10.png)
+
+``` r
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2012
+dfP2012 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2012)
+dfP2012$Mes <- as.factor(dfP2012$Mes)
+ggplot(dfP2012, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2012")
+```
+
+![](CertBR_files/figure-markdown_github/setup-11.png)
+
+``` r
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2013
+dfP2013 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2013)
+dfP2013$Mes <- as.factor(dfP2013$Mes)
+ggplot(dfP2013, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2013")
+```
+
+![](CertBR_files/figure-markdown_github/setup-12.png)
+
+``` r
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2014
+dfP2014 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2014)
+dfP2014$Mes <- as.factor(dfP2014$Mes)
+ggplot(dfP2014, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2014")
+```
+
+![](CertBR_files/figure-markdown_github/setup-13.png)
+
+``` r
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2015
+dfP2015 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2015)
+dfP2015$Mes <- as.factor(dfP2015$Mes)
+ggplot(dfP2015, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2015")
+```
+
+![](CertBR_files/figure-markdown_github/setup-14.png)
+
+``` r
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2016
+dfP2016 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2016)
+dfP2016$Mes <- as.factor(dfP2016$Mes)
+ggplot(dfP2016, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2016")
+```
+
+![](CertBR_files/figure-markdown_github/setup-15.png)

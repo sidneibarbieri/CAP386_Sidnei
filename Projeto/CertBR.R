@@ -284,3 +284,75 @@ ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) +
   geom_line(aes(y = Outros_P, colour = "Outros")) +
   labs(x = "Ano", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR")
 
+
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2012
+# (Conferência das Nações Unidas sobre Desenvolvimento Natural - Rio+20, de 13 e 22 de junho de 2012)
+dfP2012 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2012)
+dfP2012$Mes <- as.factor(dfP2012$Mes)
+ggplot(dfP2012, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2012")
+
+
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2013
+# (XXVIII Jornada Mundial da Juventude aconteceu de 23 a 28 de julho de 2013)
+# (Copa das Confederações de Futebol de 15 a 30 de junho de 2013)
+dfP2013 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2013)
+dfP2013$Mes <- as.factor(dfP2013$Mes)
+ggplot(dfP2013, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2013")
+
+
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2014
+# (Copa do Mundo, de 12 de junho a 13 de julho de 2014)
+dfP2014 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2014)
+dfP2014$Mes <- as.factor(dfP2014$Mes)
+ggplot(dfP2014, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2014")
+
+
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2015
+dfP2015 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2015)
+dfP2015$Mes <- as.factor(dfP2015$Mes)
+ggplot(dfP2015, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2015")
+
+
+# Linegraph dos Percentuais por Modalidaed de Ataques em 2016
+# (Jogos Olímpicos Rio 2016, de 5 a 21 de agosto)
+# (Paralimpíadas Rio 2016, de 7 a 18 de setembro)
+dfP2016 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2016)
+dfP2016$Mes <- as.factor(dfP2016$Mes)
+ggplot(dfP2016, aes(x = Mes, y , group = 1, colour = Modalidades)) + 
+  geom_line(aes(y = Worm_P, colour = "Worm")) + 
+  geom_line(aes(y = DOS_P, colour = "DOS")) +
+  geom_line(aes(y = Invasao_P, colour = "Invasão")) +
+  geom_line(aes(y = Web_P, colour = "Web")) +
+  geom_line(aes(y = Fraude_P, colour = "Fraude")) +
+  geom_line(aes(y = Outros_P, colour = "Outros")) +
+  labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2016")
+
+
