@@ -75,14 +75,12 @@ df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
 
 ### Acrescentar e validar a coluna "Outros"
 df$Outros <- df$Total - (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
+df$Outros <- as.integer(df$Outros)
 df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude + df$Outros)
 
 
 ### Acresdentar coluna com valores percentuais para "Outros"
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
-
-df$Outros <- as.integer(df$Outros)
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros_P)))
+df$Outros_P <- as.double(df$Outros / df$Total)
 
 
 ### Overview: identificar se há problemas no arredondamento dos valores (se a soma de percentuais é 100)
@@ -92,16 +90,32 @@ glimpse(mutate(df, Soma = Worm + DOS + Invasao + Web + Scan + Fraude + Outros))
 
 
 ### Corrigindo os arredondamentos e a representação (duas casas decimais):
+df$Worm_P <- as.double(df$Worm / df$Total)
+df$DOS_P <- as.double(df$DOS / df$Total)
+df$Invasao_P <- as.double(df$Invasao / df$Total)
+df$Web_P <- as.double(df$Web / df$Total)
+df$Scan_P <- as.double(df$Scan / df$Total)
+df$Fraude_P <- as.double(df$Fraude / df$Total)
+df$Outros_P <- as.double(df$Outros / df$Total)
+
+
+### Validar a soma de valores percentuais
+glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
+
+
+### Corrigindo os arredondamentos e a representação (duas casas decimais):
 df$Worm_P <- as.double(sprintf("%0.2f", (df$Worm / df$Total)))
 df$DOS_P <- as.double(sprintf("%0.2f", (df$DOS / df$Total)))
 df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao / df$Total)))
 df$Web_P <- as.double(sprintf("%0.2f", (df$Web / df$Total)))
 df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan / df$Total)))
 df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude / df$Total)))
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
 
 
-### Validar a soma de valores percentuais
+### Após o arredondamento há uma instabilidade leve
 glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
+
 
 ### Overview
 sample_n(df, size = 5)
@@ -117,7 +131,6 @@ sample_n(dfSelect, size = 5)
 
 ### Verificar se constam as informações de todos os 12 meses
 count(df, Ano)
-hist(df$Total)
 
 
 ### Filtrar valores significativos
@@ -172,6 +185,19 @@ df  %>%
             total = n())
 
 
+### Linegraph dos Totais de Ataques por Ano
+dfA <- df  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Total),
+            Meses = n())
+
+dfA$Ano <- as.factor(dfA$Ano)
+ggplot(dfA, aes(x = Ano, y = Total,  group = Ano)) + 
+  geom_line(aes(group = 1)) +
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: 2014 foi o pico mas, de maneira geral, o número de ataques é crescente
+
 ### Análises Diversas (Ataques de DOS acima da média)
 df  %>% 
   select(Mes, Ano, DOS)   %>% 
@@ -181,10 +207,26 @@ df  %>%
 
 ### Remodelagem dos dados com TidyR
 df$Mes <- c(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12)
-
+df$Mes <- as.factor(df$Mes)
+df$Ano <- as.factor(df$Ano)
 
 ### Corrigindo sequência cronológica
 df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total)  %>% arrange(Mes, desc(Mes)) %>% arrange(Ano, desc(Ano))
+
+
+### Linegraph dos Totais de Ataques por Mês
+dfM <- df  %>% 
+  group_by(Mes) %>%
+  summarise(Total = sum(Total),
+            Media = Total/15,
+            Meses = n())
+
+dfM$Mes <- as.factor(dfM$Mes)
+ggplot(dfM, aes(x = Mes, y = Total,  group = Mes)) + 
+  geom_line(aes(group = 1)) +
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Mês", y = "Número de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos (por mês)")
+#Obs.: Percebemos que o segundo semestre costuma ser mais movimentado
 
 
 ### Analisando a relação entre Invasão e Scan
@@ -219,59 +261,115 @@ as.tbl(dfinv)
 
 
 # Linegraph do Total Geral de Ataques por Ano
-ggplot(dfC, aes(x = Ano, y = Total, group = Ano, colour=Total)) +
+dfCAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Total),
+            Meses = n())
+
+dfCAno$Ano <- as.factor(dfCAno$Ano)
+ggplot(dfCAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número Total de Ataques", title = "Total de Ataques Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: 2014 foi o pico mas, de maneira geral, o número de ataques é crescente
 
 
 # Linegraph do Total Geral de Ataques com WORM por Ano
-ggplot(dfC, aes(x = Ano, y = Worm, group = Ano, colour=Worm)) +
+dfWORMAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Worm),
+            Meses = n())
+
+dfWORMAno$Ano <- as.factor(dfWORMAno$Ano)
+ggplot(dfWORMAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques com Worm", title = "Total de Ataques com Worm Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques com Worm", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Já foram mais comuns no passado
 
 
 # Linegraph do Total Geral de Ataques de DOS por Ano
-ggplot(dfC, aes(x = Ano, y = DOS, group = Ano, colour=DOS)) +
+dfDOSAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(DOS),
+            Meses = n())
+
+dfDOSAno$Ano <- as.factor(dfDOSAno$Ano)
+ggplot(dfDOSAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques de DOS", title = "Total de Ataques de DOS Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques DOS", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Crescente a partir de 2013
 
 
-# Linegraph do Total Geral de Ataques de Invasao por Ano
-ggplot(dfC, aes(x = Ano, y = Invasao, group = Ano, colour=Invasao)) +
+# Linegraph do Total Geral de Invasões por Ano
+dfInvasaoAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Invasao),
+            Meses = n())
+
+dfInvasaoAno$Ano <- as.factor(dfInvasaoAno$Ano)
+ggplot(dfInvasaoAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques de Invasao", title = "Total de Ataques de Invasao Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Invasões", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Crescente a partir de 2011
 
 
 # Linegraph do Total Geral de Ataques a Servidores Web por Ano
-ggplot(dfC, aes(x = Ano, y = Web, group = Ano, colour=Web)) +
+dfWebAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Web),
+            Meses = n())
+
+dfWebAno$Ano <- as.factor(dfWebAno$Ano)
+ggplot(dfWebAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques a Servidores Web", title = "Total de Ataques a Servidores Web Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques a Servidores Web", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Crescente a partir de sempre
 
 
 # Linegraph do Total Geral de Scan por Ano
-ggplot(dfC, aes(x = Ano, y = Scan, group = Ano, colour=Scan)) +
+dfScanAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Scan),
+            Meses = n())
+
+dfScanAno$Ano <- as.factor(dfScanAno$Ano)
+ggplot(dfScanAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Scan", title = "Total de Scans Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Scans", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Crescente a partir de sempre (atividade preparatória)
 
 
-# Linegraph do Total Fraudes por Ano
-ggplot(dfC, aes(x = Ano, y = Fraude, group = Ano, colour=Fraude)) +
+# Linegraph do Total de Ataques por Fraudes por Ano
+dfFraudeAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Fraude),
+            Meses = n())
+
+dfFraudeAno$Ano <- as.factor(dfFraudeAno$Ano)
+ggplot(dfFraudeAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Fraudes", title = "Total de Fraudes Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques por Fraudes", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Cresce mais lentamente
 
 
 # Linegraph do Total de Outros Atques por Ano
-ggplot(dfC, aes(x = Ano, y = Outros, group = Ano, colour=Outros)) +
+dfOutrosAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Outros),
+            Meses = n())
+
+dfOutrosAno$Ano <- as.factor(dfOutrosAno$Ano)
+ggplot(dfOutrosAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Outros", title = "Total de Outros Ataques Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques por Fraudes", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+#Obs.: Os critérios de classificação tem evoluído 
 
 
 # Linegraph dos Percentuais por Modalidaed de Ataques
@@ -354,4 +452,7 @@ ggplot(dfP2016, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   geom_line(aes(y = Fraude_P, colour = "Fraude")) +
   geom_line(aes(y = Outros_P, colour = "Outros")) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2016")
+
+
+
 

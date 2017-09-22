@@ -167,18 +167,18 @@ summary(df)
 sample_n(df, size = 5)
 ```
 
-    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P  Web Web_P
-    ## 87   87 mar 2009 38246  773   2.02   3  0,01      12      0.03  342  0.89
-    ## 15   15 mar 2015 52959 2867   5.41  70  0,13     489      0.92 8822 16.66
-    ## 52   52 abr 2012 35342 3171   8.97   9  0,03     100      0.28 2111  5.97
-    ## 123 123 mar 2006 11945 4062  34.01  41  0,34     112      0.94   29  0.24
-    ## 60   60 dez 2012 29006 1553   5.35  17  0,06     577      1.99  657  2.27
-    ##      Scan Scan_P Fraude Fraude_P
-    ## 87   4392  11.48  32440    84.82
-    ## 15  32351  61.09   6338    11.97
-    ## 52   9557  27.04   7923    22.42
-    ## 123  2925  24.49   4776    39.98
-    ## 60  16095  55.49   4421    15.24
+    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P Web Web_P
+    ## 151 151 jul 2004  6773 4636  68.45   2  0,03       7      0.10  49  0.72
+    ## 99   99 mar 2008 11586 2579  22.26   4  0,03      25      0.22 420  3.63
+    ## 147 147 mar 2004  6002 2653  44.20  19  0,32      56      0.93  32  0.53
+    ## 136 136 abr 2005  5253 1432  27.26   -     -      20      0.38  25  0.48
+    ## 163 163 jul 2003  3622 1386  38.27   1  0,03      11      0.30  52  1.44
+    ##     Scan Scan_P Fraude Fraude_P
+    ## 151 1791  26.44    270     3.99
+    ## 99  3661  31.60   4881    42.13
+    ## 147 2862  47.68    343     5.71
+    ## 136 1437  27.36   2322    44.20
+    ## 163 2052  56.65     39     1.08
 
 ``` r
 ### Conversões das colunas
@@ -212,28 +212,28 @@ df[is.na(df)] <- 0
 sample_n(df, size = 10)
 ```
 
-    ##     Ord Mes  Ano Total Worm Worm_P   DOS DOS_P Invasao Invasao_P  Web
-    ## 97   97 jan 2008 10341 3164  30.60    73     0      13      0.13  343
-    ## 112 112 abr 2007 14152 6416  45.34    11     0       6      0.04  147
-    ## 117 117 set 2007 11906 4620  38.80   480     0      33      0.28  152
-    ## 128 128 ago 2006 17501 8961  51.20     4     0      44      0.25   37
-    ## 133 133 jan 2005  4448 1019  22.91     0     0      14      0.31   22
-    ## 65   65 mai 2011 42715 1038   2.43     2     0       5      0.01 1091
-    ## 1     1 jan 2016 54781 4994   9.12   942     0     272      0.50 2266
-    ## 11   11 nov 2016 57345 1018   1.78 15735     0     320      0.56 7758
-    ## 159 159 mar 2003  3255 1919  58.96     4     0       8      0.25   26
-    ## 70   70 out 2011 27966 3903  13.96     3     0       5      0.02  856
-    ##     Web_P  Scan Scan_P Fraude Fraude_P
-    ## 97   3.32  2431  23.51   4266    41.25
-    ## 112  1.04  4584  32.39   2988    21.11
-    ## 117  1.28  2227  18.70   4394    36.91
-    ## 128  0.21  5160  29.48   3295    18.83
-    ## 133  0.49  2694  60.57    683    15.36
-    ## 65   2.55  6628  15.52   3307     7.74
-    ## 1    4.14 32959  60.17  11846    21.62
-    ## 11  13.53 25858  45.09   5277     9.20
-    ## 159  0.80  1206  37.05     11     0.34
-    ## 70   3.06 14868  53.16   3238    11.58
+    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P  Web Web_P
+    ## 101 101 mai 2008 14567 2760  18.95   7     0     133      0.91  624  4.28
+    ## 75   75 mar 2010 11836 2236  18.89   0     0       1      0.01  780  6.59
+    ## 173 173 mai 2002  1267  408  32.20   1     0       6      0.47   15  1.18
+    ## 72   72 dez 2011 25581 6214  24.29   9     0       6      0.02 1532  5.99
+    ## 61   61 jan 2011 16840 1041   6.18   9     0       6      0.04  996  5.91
+    ## 149 149 mai 2004  5471 2260  41.31   2     0      19      0.35   58  1.06
+    ## 169 169 jan 2002  1453  268  18.44   4     0      10      0.69   33  2.27
+    ## 163 163 jul 2003  3622 1386  38.27   1     0      11      0.30   52  1.44
+    ## 78   78 jun 2010 11680 1324  11.34   2     0       2      0.02  706  6.04
+    ## 58   58 out 2012 39326 3380   8.59   9     0     754      1.92 1186  3.02
+    ##      Scan Scan_P Fraude Fraude_P
+    ## 101  3716  25.51   7274    49.93
+    ## 75   4573  38.64   3529    29.82
+    ## 173   758  59.83     13     1.03
+    ## 72  10104  39.50   3155    12.33
+    ## 61   8343  49.54   3098    18.40
+    ## 149  2913  53.24    181     3.31
+    ## 169  1072  73.78      3     0.21
+    ## 163  2052  56.65     39     1.08
+    ## 78   6533  55.93   2872    24.59
+    ## 58  23229  59.07   6442    16.38
 
 ``` r
 ### Verificar se o Total corresponde à soma das demais colunas
@@ -261,6 +261,7 @@ df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
 ``` r
 ### Acrescentar e validar a coluna "Outros"
 df$Outros <- df$Total - (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude)
+df$Outros <- as.integer(df$Outros)
 df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude + df$Outros)
 ```
 
@@ -273,10 +274,7 @@ df$Total -  (df$Worm + df$DOS + df$Invasao + df$Web + df$Scan + df$Fraude + df$O
 
 ``` r
 ### Acresdentar coluna com valores percentuais para "Outros"
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
-
-df$Outros <- as.integer(df$Outros)
-df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros_P)))
+df$Outros_P <- as.double(df$Outros / df$Total)
 
 
 ### Overview: identificar se há problemas no arredondamento dos valores (se a soma de percentuais é 100)
@@ -302,7 +300,7 @@ glimpse(df)
     ## $ Fraude    <int> 11846, 8783, 10573, 11681, 14456, 12646, 6252, 7402,...
     ## $ Fraude_P  <dbl> 21.62, 15.40, 11.39, 26.34, 29.37, 21.34, 16.28, 14....
     ## $ Outros    <int> 1502, 1517, 1948, 1060, 1266, 866, 1025, 1098, 868, ...
-    ## $ Outros_P  <dbl> 0.03, 0.03, 0.02, 0.02, 0.03, 0.01, 0.03, 0.02, 0.02...
+    ## $ Outros_P  <dbl> 0.02741827, 0.02659491, 0.02097962, 0.02389971, 0.02...
 
 ``` r
 glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
@@ -327,8 +325,8 @@ glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraud
     ## $ Fraude    <int> 11846, 8783, 10573, 11681, 14456, 12646, 6252, 7402,...
     ## $ Fraude_P  <dbl> 21.62, 15.40, 11.39, 26.34, 29.37, 21.34, 16.28, 14....
     ## $ Outros    <int> 1502, 1517, 1948, 1060, 1266, 866, 1025, 1098, 868, ...
-    ## $ Outros_P  <dbl> 0.03, 0.03, 0.02, 0.02, 0.03, 0.01, 0.03, 0.02, 0.02...
-    ## $ Soma100   <dbl> 95.58, 97.13, 84.08, 83.77, 96.77, 97.15, 93.00, 97....
+    ## $ Outros_P  <dbl> 0.02741827, 0.02659491, 0.02097962, 0.02389971, 0.02...
+    ## $ Soma100   <dbl> 95.57742, 97.12659, 84.08098, 83.77390, 96.76572, 97...
 
 ``` r
 glimpse(mutate(df, Soma = Worm + DOS + Invasao + Web + Scan + Fraude + Outros))
@@ -353,8 +351,45 @@ glimpse(mutate(df, Soma = Worm + DOS + Invasao + Web + Scan + Fraude + Outros))
     ## $ Fraude    <int> 11846, 8783, 10573, 11681, 14456, 12646, 6252, 7402,...
     ## $ Fraude_P  <dbl> 21.62, 15.40, 11.39, 26.34, 29.37, 21.34, 16.28, 14....
     ## $ Outros    <int> 1502, 1517, 1948, 1060, 1266, 866, 1025, 1098, 868, ...
-    ## $ Outros_P  <dbl> 0.03, 0.03, 0.02, 0.02, 0.03, 0.01, 0.03, 0.02, 0.02...
+    ## $ Outros_P  <dbl> 0.02741827, 0.02659491, 0.02097962, 0.02389971, 0.02...
     ## $ Soma      <dbl> 54781, 57041, 92852, 44352, 49228, 59266, 38402, 495...
+
+``` r
+### Corrigindo os arredondamentos e a representação (duas casas decimais):
+df$Worm_P <- as.double(df$Worm / df$Total)
+df$DOS_P <- as.double(df$DOS / df$Total)
+df$Invasao_P <- as.double(df$Invasao / df$Total)
+df$Web_P <- as.double(df$Web / df$Total)
+df$Scan_P <- as.double(df$Scan / df$Total)
+df$Fraude_P <- as.double(df$Fraude / df$Total)
+df$Outros_P <- as.double(df$Outros / df$Total)
+
+
+### Validar a soma de valores percentuais
+glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
+```
+
+    ## Observations: 180
+    ## Variables: 19
+    ## $ Ord       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...
+    ## $ Mes       <chr> "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ag...
+    ## $ Ano       <int> 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016...
+    ## $ Total     <int> 54781, 57041, 92852, 44352, 49228, 59266, 38402, 495...
+    ## $ Worm      <int> 4994, 4176, 3886, 1170, 3186, 2041, 1766, 1927, 1583...
+    ## $ Worm_P    <dbl> 0.09116299, 0.07321050, 0.04185155, 0.02637987, 0.06...
+    ## $ DOS       <dbl> 942, 137, 12851, 6147, 338, 823, 1676, 260, 9171, 41...
+    ## $ DOS_P     <dbl> 0.0171957430, 0.0024017812, 0.1384030500, 0.13859577...
+    ## $ Invasao   <int> 272, 95, 106, 126, 125, 126, 116, 137, 145, 86, 320,...
+    ## $ Invasao_P <dbl> 0.0049652252, 0.0016654687, 0.0011416017, 0.00284090...
+    ## $ Web       <int> 2266, 1422, 4526, 1637, 2361, 1554, 1804, 10802, 602...
+    ## $ Web_P     <dbl> 0.04136471, 0.02492944, 0.04874424, 0.03690927, 0.04...
+    ## $ Scan      <int> 32959, 40911, 58962, 22531, 27496, 41210, 25763, 279...
+    ## $ Scan_P    <dbl> 0.6016502, 0.7172209, 0.6350106, 0.5080041, 0.558543...
+    ## $ Fraude    <int> 11846, 8783, 10573, 11681, 14456, 12646, 6252, 7402,...
+    ## $ Fraude_P  <dbl> 0.21624286, 0.15397696, 0.11386938, 0.26337031, 0.29...
+    ## $ Outros    <int> 1502, 1517, 1948, 1060, 1266, 866, 1025, 1098, 868, ...
+    ## $ Outros_P  <dbl> 0.02741827, 0.02659491, 0.02097962, 0.02389971, 0.02...
+    ## $ Soma100   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 
 ``` r
 ### Corrigindo os arredondamentos e a representação (duas casas decimais):
@@ -367,7 +402,7 @@ df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude / df$Total)))
 df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
 
 
-### Validar a soma de valores percentuais
+### Após o arredondamento há uma instabilidade leve
 glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraude_P + Outros_P))
 ```
 
@@ -398,18 +433,18 @@ glimpse(mutate(df, Soma100 = Worm_P + DOS_P + Invasao_P + Web_P + Scan_P + Fraud
 sample_n(df, size = 5)
 ```
 
-    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P  Web Web_P
-    ## 67   67 jul 2011 42262 1236   0.03  11     0      11      0.00 2697  0.06
-    ## 38   38 fev 2013 26471 1523   0.06   6     0    1206      0.05 1364  0.05
-    ## 47   47 nov 2013 30213 2843   0.09  28     0     363      0.01 2247  0.07
-    ## 123 123 mar 2006 11945 4062   0.34  41     0     112      0.01   29  0.00
-    ## 165 165 set 2003  5987 3529   0.59   2     0       7      0.00   40  0.01
+    ##     Ord Mes  Ano Total Worm Worm_P DOS DOS_P Invasao Invasao_P   Web Web_P
+    ## 179 179 nov 2002  4436 3491   0.79   5  0.00       8      0.00    18  0.00
+    ## 8     8 ago 2016 49596 1927   0.04 260  0.01     137      0.00 10802  0.22
+    ## 170 170 fev 2002  1186  170   0.14   2  0.00      14      0.01    15  0.01
+    ## 16   16 abr 2015 52991 3046   0.06  34  0.00     150      0.00  6297  0.12
+    ## 175 175 jul 2002  1900  808   0.43  14  0.01      25      0.01    20  0.01
     ##      Scan Scan_P Fraude Fraude_P Outros Outros_P
-    ## 67   8523   0.20   3307     0.08  26477     0.63
-    ## 38  12664   0.48   5573     0.21   4135     0.16
-    ## 47  13263   0.44   8876     0.29   2593     0.09
-    ## 123  2925   0.24   4776     0.40      0     0.00
-    ## 165  2321   0.39     50     0.01     38     0.01
+    ## 179   806   0.18     11     0.00     97     0.02
+    ## 8   27970   0.56   7402     0.15   1098     0.02
+    ## 170   898   0.76      1     0.00     86     0.07
+    ## 16  31215   0.59  10571     0.20   1678     0.03
+    ## 175   920   0.48      5     0.00    108     0.06
 
 ``` r
 ### Seleção de partes
@@ -436,12 +471,12 @@ dfSelect <- select(df, Ano:Total)
 sample_n(dfSelect, size = 5)
 ```
 
-    ##      Ano Total
-    ## 14  2015 66700
-    ## 116 2007 11437
-    ## 115 2007 10858
-    ## 96  2009  9213
-    ## 142 2005  6316
+    ##      Ano  Total
+    ## 17  2015  58322
+    ## 35  2014 107219
+    ## 126 2006  17470
+    ## 156 2004   4736
+    ## 89  2009  43819
 
 ``` r
 ### Verificar se constam as informações de todos os 12 meses
@@ -466,12 +501,6 @@ count(df, Ano)
     ## 13  2014    12
     ## 14  2015    12
     ## 15  2016    12
-
-``` r
-hist(df$Total)
-```
-
-![](CertBR_files/figure-markdown_github/setup-1.png)
 
 ``` r
 ### Filtrar valores significativos
@@ -733,6 +762,24 @@ df  %>%
     ## 12   set    34367     1964   214954    15
 
 ``` r
+### Linegraph dos Totais de Ataques por Ano
+dfA <- df  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Total),
+            Meses = n())
+
+dfA$Ano <- as.factor(dfA$Ano)
+ggplot(dfA, aes(x = Ano, y = Total,  group = Ano)) + 
+  geom_line(aes(group = 1)) +
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
+```
+
+![](CertBR_View_files/figure-markdown_github/setup-1.png)
+
+``` r
+#Obs.: 2014 foi o pico mas, de maneira geral, o número de ataques é crescente
+
 ### Análises Diversas (Ataques de DOS acima da média)
 df  %>% 
   select(Mes, Ano, DOS)   %>% 
@@ -751,10 +798,31 @@ df  %>%
 ``` r
 ### Remodelagem dos dados com TidyR
 df$Mes <- c(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12)
-
+df$Mes <- as.factor(df$Mes)
+df$Ano <- as.factor(df$Ano)
 
 ### Corrigindo sequência cronológica
 df <- df  %>% select(Mes, Ano, Worm, Worm_P, DOS, DOS_P, Invasao, Invasao_P, Web, Web_P, Scan, Scan_P, Fraude, Fraude_P, Outros, Outros_P, Total)  %>% arrange(Mes, desc(Mes)) %>% arrange(Ano, desc(Ano))
+
+
+### Linegraph dos Totais de Ataques por Mês
+dfM <- df  %>% 
+  group_by(Mes) %>%
+  summarise(Total = sum(Total),
+            Media = Total/15,
+            Meses = n())
+
+dfM$Mes <- as.factor(dfM$Mes)
+ggplot(dfM, aes(x = Mes, y = Total,  group = Mes)) + 
+  geom_line(aes(group = 1)) +
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Mês", y = "Número de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos (por mês)")
+```
+
+![](CertBR_View_files/figure-markdown_github/setup-2.png)
+
+``` r
+#Obs.: Percebemos que o segundo semestre costuma ser mais movimentado
 
 
 ### Analisando a relação entre Invasão e Scan
@@ -764,20 +832,20 @@ sample_n(dfRelation, size = 12)
 ```
 
     ## # A tibble: 12 x 17
-    ##      Mes   Ano  Worm Worm_P   DOS DOS_P Invasao Invasao_P   Web Web_P
-    ##    <dbl> <int> <int>  <dbl> <dbl> <dbl>   <int>     <dbl> <int> <dbl>
-    ##  1    11  2012  1858   0.05   125  0.00     716      0.02  1116  0.03
-    ##  2     7  2012  2922   0.07    17  0.00    1320      0.03  2899  0.07
-    ##  3     4  2012  3171   0.09     9  0.00     100      0.00  2111  0.06
-    ##  4    12  2015  5390   0.11   971  0.02     118      0.00  1493  0.03
-    ##  5     9  2016  1583   0.03  9171  0.20     145      0.00  6027  0.13
-    ##  6     7  2013  2932   0.09   123  0.00     509      0.02  1710  0.06
-    ##  7    11  2014  2571   0.02 29566  0.28     201      0.00  3416  0.03
-    ##  8     6  2012  2702   0.07     9  0.00     619      0.02  3124  0.08
-    ##  9     3  2015  2867   0.05    70  0.00     489      0.01  8822  0.17
-    ## 10     9  2015  4326   0.07  2511  0.04     119      0.00  3993  0.07
-    ## 11    10  2012  3380   0.09     9  0.00     754      0.02  1186  0.03
-    ## 12    11  2016  1018   0.02 15735  0.27     320      0.01  7758  0.14
+    ##       Mes    Ano  Worm Worm_P   DOS DOS_P Invasao Invasao_P   Web Web_P
+    ##    <fctr> <fctr> <int>  <dbl> <dbl> <dbl>   <int>     <dbl> <int> <dbl>
+    ##  1      6   2013  2580   0.09    15  0.00     592      0.02  2177  0.07
+    ##  2     12   2016  1208   0.02 11942  0.19      41      0.00 10234  0.16
+    ##  3      6   2014  2274   0.04 10345  0.19     612      0.01  2171  0.04
+    ##  4      8   2012  2867   0.05    40  0.00     659      0.01  1717  0.03
+    ##  5      9   2013  2365   0.08    86  0.00     419      0.01  1573  0.05
+    ##  6      8   2013  2090   0.07    24  0.00     542      0.02  1942  0.07
+    ##  7      1   2012  6830   0.25     7  0.00     603      0.02  2137  0.08
+    ##  8     10   2014  2563   0.01 50195  0.24     296      0.00  3029  0.01
+    ##  9      4   2014  3513   0.08  1505  0.04    1559      0.04  1900  0.05
+    ## 10      4   2013  2084   0.07    14  0.00    1511      0.05  1479  0.05
+    ## 11      8   2015  3683   0.06  3354  0.05     104      0.00  4447  0.07
+    ## 12      6   2016  2041   0.03   823  0.01     126      0.00  1554  0.03
     ## # ... with 7 more variables: Scan <int>, Scan_P <dbl>, Fraude <int>,
     ## #   Fraude_P <dbl>, Outros <int>, Outros_P <dbl>, Total <int>
 
@@ -802,14 +870,14 @@ head(dfC)
 ```
 
     ## # A tibble: 6 x 17
-    ##     Mes   Ano  Worm Worm_P   DOS DOS_P Invasao Invasao_P   Web Web_P
-    ##   <dbl> <int> <int>  <dbl> <dbl> <dbl>   <int>     <dbl> <int> <dbl>
-    ## 1     1  2002   268   0.18     4     0      10      0.01    33  0.02
-    ## 2     2  2002   170   0.14     2     0      14      0.01    15  0.01
-    ## 3     3  2002   164   0.13     0     0      10      0.01    11  0.01
-    ## 4     4  2002   204   0.17     1     0      10      0.01    26  0.02
-    ## 5     5  2002   408   0.32     1     0       6      0.00    15  0.01
-    ## 6     6  2002   374   0.27     3     0      12      0.01     8  0.01
+    ##      Mes    Ano  Worm Worm_P   DOS DOS_P Invasao Invasao_P   Web Web_P
+    ##   <fctr> <fctr> <int>  <dbl> <dbl> <dbl>   <int>     <dbl> <int> <dbl>
+    ## 1      1   2002   268   0.18     4     0      10      0.01    33  0.02
+    ## 2      2   2002   170   0.14     2     0      14      0.01    15  0.01
+    ## 3      3   2002   164   0.13     0     0      10      0.01    11  0.01
+    ## 4      4   2002   204   0.17     1     0      10      0.01    26  0.02
+    ## 5      5   2002   408   0.32     1     0       6      0.00    15  0.01
+    ## 6      6   2002   374   0.27     3     0      12      0.01     8  0.01
     ## # ... with 7 more variables: Scan <int>, Scan_P <dbl>, Fraude <int>,
     ## #   Fraude_P <dbl>, Outros <int>, Outros_P <dbl>, Total <int>
 
@@ -827,7 +895,7 @@ str(dfinv)
 ```
 
     ## Classes 'tbl_df', 'tbl' and 'data.frame':    180 obs. of  4 variables:
-    ##  $ Ano    : int  2002 2002 2002 2002 2002 2002 2002 2002 2002 2002 ...
+    ##  $ Ano    : Factor w/ 15 levels "2002","2003",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ DOS    : num  4 2 0 1 1 3 14 6 5 7 ...
     ##  $ Invasao: int  10 14 10 10 6 12 25 7 16 10 ...
     ##  $ Web    : int  33 15 11 26 15 8 20 27 20 23 ...
@@ -838,7 +906,7 @@ str(dfinv)
 ```
 
     ## Classes 'tbl_df', 'tbl' and 'data.frame':    180 obs. of  4 variables:
-    ##  $ Ano    : int  2002 2002 2002 2002 2002 2002 2002 2002 2002 2002 ...
+    ##  $ Ano    : Factor w/ 15 levels "2002","2003",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ DOS    : int  4 2 0 1 1 3 14 6 5 7 ...
     ##  $ Invasao: int  10 14 10 10 6 12 25 7 16 10 ...
     ##  $ Web    : int  33 15 11 26 15 8 20 27 20 23 ...
@@ -848,101 +916,173 @@ as.tbl(dfinv)
 ```
 
     ## # A tibble: 180 x 4
-    ##      Ano   DOS Invasao   Web
-    ##  * <int> <int>   <int> <int>
-    ##  1  2002     4      10    33
-    ##  2  2002     2      14    15
-    ##  3  2002     0      10    11
-    ##  4  2002     1      10    26
-    ##  5  2002     1       6    15
-    ##  6  2002     3      12     8
-    ##  7  2002    14      25    20
-    ##  8  2002     6       7    27
-    ##  9  2002     5      16    20
-    ## 10  2002     7      10    23
+    ##       Ano   DOS Invasao   Web
+    ##  * <fctr> <int>   <int> <int>
+    ##  1   2002     4      10    33
+    ##  2   2002     2      14    15
+    ##  3   2002     0      10    11
+    ##  4   2002     1      10    26
+    ##  5   2002     1       6    15
+    ##  6   2002     3      12     8
+    ##  7   2002    14      25    20
+    ##  8   2002     6       7    27
+    ##  9   2002     5      16    20
+    ## 10   2002     7      10    23
     ## # ... with 170 more rows
 
 ``` r
 # Linegraph do Total Geral de Ataques por Ano
-ggplot(dfC, aes(x = Ano, y = Total, group = Ano, colour=Total)) +
+dfCAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Total),
+            Meses = n())
+
+dfCAno$Ano <- as.factor(dfCAno$Ano)
+ggplot(dfCAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número Total de Ataques", title = "Total de Ataques Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-2.png)
+![](CertBR_View_files/figure-markdown_github/setup-3.png)
 
 ``` r
+#Obs.: 2014 foi o pico mas, de maneira geral, o número de ataques é crescente
+
+
 # Linegraph do Total Geral de Ataques com WORM por Ano
-ggplot(dfC, aes(x = Ano, y = Worm, group = Ano, colour=Worm)) +
+dfWORMAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Worm),
+            Meses = n())
+
+dfWORMAno$Ano <- as.factor(dfWORMAno$Ano)
+ggplot(dfWORMAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques com Worm", title = "Total de Ataques com Worm Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques com Worm", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-3.png)
+![](CertBR_View_files/figure-markdown_github/setup-4.png)
 
 ``` r
+#Obs.: Já foram mais comuns no passado
+
+
 # Linegraph do Total Geral de Ataques de DOS por Ano
-ggplot(dfC, aes(x = Ano, y = DOS, group = Ano, colour=DOS)) +
+dfDOSAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(DOS),
+            Meses = n())
+
+dfDOSAno$Ano <- as.factor(dfDOSAno$Ano)
+ggplot(dfDOSAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques de DOS", title = "Total de Ataques de DOS Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques DOS", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-4.png)
+![](CertBR_View_files/figure-markdown_github/setup-5.png)
 
 ``` r
-# Linegraph do Total Geral de Ataques de Invasao por Ano
-ggplot(dfC, aes(x = Ano, y = Invasao, group = Ano, colour=Invasao)) +
+#Obs.: Crescente a partir de 2013
+
+
+# Linegraph do Total Geral de Invasões por Ano
+dfInvasaoAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Invasao),
+            Meses = n())
+
+dfInvasaoAno$Ano <- as.factor(dfInvasaoAno$Ano)
+ggplot(dfInvasaoAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques de Invasao", title = "Total de Ataques de Invasao Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Invasões", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-5.png)
+![](CertBR_View_files/figure-markdown_github/setup-6.png)
 
 ``` r
+#Obs.: Crescente a partir de 2011
+
+
 # Linegraph do Total Geral de Ataques a Servidores Web por Ano
-ggplot(dfC, aes(x = Ano, y = Web, group = Ano, colour=Web)) +
+dfWebAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Web),
+            Meses = n())
+
+dfWebAno$Ano <- as.factor(dfWebAno$Ano)
+ggplot(dfWebAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Ataques a Servidores Web", title = "Total de Ataques a Servidores Web Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques a Servidores Web", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-6.png)
+![](CertBR_View_files/figure-markdown_github/setup-7.png)
 
 ``` r
+#Obs.: Crescente a partir de sempre
+
+
 # Linegraph do Total Geral de Scan por Ano
-ggplot(dfC, aes(x = Ano, y = Scan, group = Ano, colour=Scan)) +
+dfScanAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Scan),
+            Meses = n())
+
+dfScanAno$Ano <- as.factor(dfScanAno$Ano)
+ggplot(dfScanAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Scan", title = "Total de Scans Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Scans", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-7.png)
+![](CertBR_View_files/figure-markdown_github/setup-8.png)
 
 ``` r
-# Linegraph do Total Fraudes por Ano
-ggplot(dfC, aes(x = Ano, y = Fraude, group = Ano, colour=Fraude)) +
+#Obs.: Crescente a partir de sempre (atividade preparatória)
+
+
+# Linegraph do Total de Ataques por Fraudes por Ano
+dfFraudeAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Fraude),
+            Meses = n())
+
+dfFraudeAno$Ano <- as.factor(dfFraudeAno$Ano)
+ggplot(dfFraudeAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Fraudes", title = "Total de Fraudes Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques por Fraudes", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-8.png)
+![](CertBR_View_files/figure-markdown_github/setup-9.png)
 
 ``` r
+#Obs.: Cresce mais lentamente
+
+
 # Linegraph do Total de Outros Atques por Ano
-ggplot(dfC, aes(x = Ano, y = Outros, group = Ano, colour=Outros)) +
+dfOutrosAno <- dfC  %>% 
+  group_by(Ano) %>%
+  summarise(Total = sum(Outros),
+            Meses = n())
+
+dfOutrosAno$Ano <- as.factor(dfOutrosAno$Ano)
+ggplot(dfOutrosAno, aes(x = Ano, y = Total,  group = Ano)) + 
   geom_line(aes(group = 1)) +
-  geom_point() +
-  labs(x = "Ano", y = "Número de Outros", title = "Total de Outros Ataques Registrados pelo CertBR")
+  geom_smooth(method = "loess", size = 1, aes(group = 1), se = T) + 
+  labs(x = "Ano", y = "Número Total de Ataques por Fraudes", title = "Ataques Registrados pelo CertBR nos últimos 15 anos")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-9.png)
+![](CertBR_View_files/figure-markdown_github/setup-10.png)
 
 ``` r
+#Obs.: Os critérios de classificação tem evoluído 
+
+
 # Linegraph dos Percentuais por Modalidaed de Ataques
 ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) + 
   geom_line(aes(y = Worm_P, colour = "Worm")) + 
@@ -954,9 +1094,11 @@ ggplot(dfP, aes(x = Ano, y , group = Mes, colour = Modalidades)) +
   labs(x = "Ano", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-10.png)
+![](CertBR_View_files/figure-markdown_github/setup-11.png)
 
 ``` r
+#Obs.: Comportamentos mais ou menos homogêneos
+
 # Linegraph dos Percentuais por Modalidaed de Ataques em 2012
 # (Conferência das Nações Unidas sobre Desenvolvimento Natural - Rio+20, de 13 e 22 de junho de 2012)
 dfP2012 <- tbl_df(dfP)  %>% arrange(Mes) %>% filter(Ano == 2012)
@@ -971,7 +1113,7 @@ ggplot(dfP2012, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2012")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-11.png)
+![](CertBR_View_files/figure-markdown_github/setup-12.png)
 
 ``` r
 # Linegraph dos Percentuais por Modalidaed de Ataques em 2013
@@ -989,7 +1131,7 @@ ggplot(dfP2013, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2013")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-12.png)
+![](CertBR_View_files/figure-markdown_github/setup-13.png)
 
 ``` r
 # Linegraph dos Percentuais por Modalidaed de Ataques em 2014
@@ -1006,7 +1148,7 @@ ggplot(dfP2014, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2014")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-13.png)
+![](CertBR_View_files/figure-markdown_github/setup-14.png)
 
 ``` r
 # Linegraph dos Percentuais por Modalidaed de Ataques em 2015
@@ -1022,7 +1164,7 @@ ggplot(dfP2015, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2015")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-14.png)
+![](CertBR_View_files/figure-markdown_github/setup-15.png)
 
 ``` r
 # Linegraph dos Percentuais por Modalidaed de Ataques em 2016
@@ -1040,4 +1182,4 @@ ggplot(dfP2016, aes(x = Mes, y , group = 1, colour = Modalidades)) +
   labs(x = "Mês", y = "Número de Ataques (%)", title = "Percentuais por Modalidaed de Ataques Registrados pelo CertBR em 2016")
 ```
 
-![](CertBR_files/figure-markdown_github/setup-15.png)
+![](CertBR_View_files/figure-markdown_github/setup-16.png)

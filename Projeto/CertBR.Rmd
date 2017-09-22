@@ -98,6 +98,7 @@ df$Invasao_P <- as.double(sprintf("%0.2f", (df$Invasao / df$Total)))
 df$Web_P <- as.double(sprintf("%0.2f", (df$Web / df$Total)))
 df$Scan_P <- as.double(sprintf("%0.2f", (df$Scan / df$Total)))
 df$Fraude_P <- as.double(sprintf("%0.2f", (df$Fraude / df$Total)))
+df$Outros_P <- as.double(sprintf("%0.2f", (df$Outros / df$Total)))
 
 
 ### Validar a soma de valores percentuais
